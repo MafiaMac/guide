@@ -66,11 +66,13 @@ The `name` property states which event this file is for, and the `once` property
 
 ## Reading event files
 
-Next, let's write the code for dynamically retrieving all the event files in the `events` folder. We'll be taking a similar approach to our [command handler](/creating-your-bot/command-handling.md).
+Next, let's write the code for dynamically retrieving all the event files in the `events` folder. Before we do that make sure you define `fs` then we'll be taking a similar approach to our [command handler](/creating-your-bot/command-handling.md).
 
 `fs.readdirSync().filter()` returns an array of all the file names in the given directory and filters for only `.js` files, i.e. `['ready.js', 'interactionCreate.js']`.
 
 ```js {3,5-12}
+var fs = require('fs');
+
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
